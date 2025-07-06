@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   DndContext,
   closestCenter,
@@ -98,16 +98,23 @@ interface DragDropReorderProps {
   visibility: Record<string, boolean>;
   onReorder: (newOrder: string[]) => void;
   onToggleVisibility: (id: string) => void;
+  onDragStateChange?: (dragging: boolean) => void;
 }
 
 export const DragDropReorder = ({ 
   items, 
   visibility, 
   onReorder, 
-  onToggleVisibility 
+  onToggleVisibility,
+  onDragStateChange
 }: DragDropReorderProps) => {
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        delay: 10,
+        tolerance: 5,
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
@@ -116,7 +123,16 @@ export const DragDropReorder = ({
   // Filter out 'stock-header' so it is not draggable or togglable
   const filteredItems = items.filter(id => id !== 'stock-header');
 
+  const draggingRef = useRef(false);
+
+  const handleDragStart = () => {
+    draggingRef.current = true;
+    onDragStateChange?.(true);
+  };
+
   const handleDragEnd = (event: DragEndEvent) => {
+    draggingRef.current = false;
+    onDragStateChange?.(false);
     const { active, over } = event;
 
     if (active.id !== over?.id) {
@@ -135,11 +151,18 @@ export const DragDropReorder = ({
     }
   };
 
+  const handleDragCancel = () => {
+    draggingRef.current = false;
+    onDragStateChange?.(false);
+  };
+
   return (
     <DndContext
       sensors={sensors}
       collisionDetection={closestCenter}
+      onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
+      onDragCancel={handleDragCancel}
     >
       <SortableContext items={filteredItems} strategy={verticalListSortingStrategy}>
         <div className="space-y-0">

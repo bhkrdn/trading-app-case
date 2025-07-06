@@ -1,10 +1,11 @@
-import { ChevronUp, ChevronDown, Eye, EyeOff, RotateCcw, Settings, Palette } from 'lucide-react';
+import { ChevronUp, ChevronDown, Eye, EyeOff, RotateCcw, Settings, Palette, Home } from 'lucide-react';
 import { COMPONENT_REGISTRY } from '@/utils/componentRegistry';
 import { LayoutConfig } from '@/types/layout';
 import { DragDropReorder } from './DragDropReorder';
 import { ComponentConfigPanel } from './ComponentConfigPanel';
 import { useState } from 'react';
 import { getPresetNames, getPresetById } from '@/utils/layoutPresets';
+import { useNavigate } from 'react-router-dom';
 
 interface ControlPanelProps {
   config: LayoutConfig;
@@ -14,6 +15,7 @@ interface ControlPanelProps {
   onReorder: (newOrder: string[]) => void;
   onUpdateComponentProps: (componentId: string, props: Record<string, any>) => void;
   onLoadPreset: (presetId: string) => void;
+  onHidePanel?: () => void;
 }
 
 export const ControlPanel = ({ 
@@ -23,13 +25,36 @@ export const ControlPanel = ({
   onResetToDefault,
   onReorder,
   onUpdateComponentProps,
-  onLoadPreset
+  onLoadPreset,
+  onHidePanel
 }: ControlPanelProps) => {
   const [selectedComponent, setSelectedComponent] = useState<string | null>(null);
   const [showConfigPanel, setShowConfigPanel] = useState(false);
   const [activeTab, setActiveTab] = useState<'components' | 'presets'>('components');
+  const [isDragging, setIsDragging] = useState(false);
+  const navigate = useNavigate();
+
   return (
-    <div className="w-80 bg-card border-r border-border p-4 overflow-y-auto h-screen">
+    <div className={`w-80 bg-card border-r border-border p-4 h-screen ${isDragging ? 'overflow-hidden touch-none' : 'overflow-y-auto'}`}>
+      {/* Navigation Buttons */}
+      <div className="mb-4 space-y-2">
+        <button
+          onClick={() => navigate('/')}
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+        >
+          <Home className="w-4 h-4" />
+          Back to Main Page
+        </button>
+        
+        {onHidePanel && (
+          <button
+            onClick={onHidePanel}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-muted text-muted-foreground rounded-md hover:bg-muted/80 border border-border transition-colors"
+          >
+            Hide Control Panel
+          </button>
+        )}
+      </div>
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-foreground mb-2">Layout Controls</h2>
         <p className="text-sm text-muted-foreground">
@@ -94,6 +119,7 @@ export const ControlPanel = ({
             visibility={config.visibility}
             onReorder={onReorder}
             onToggleVisibility={onToggleComponent}
+            onDragStateChange={setIsDragging}
           />
         </div>
       ) : (

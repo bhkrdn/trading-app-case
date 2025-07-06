@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { LayoutConfig } from '@/types/layout';
 import { DEFAULT_COMPONENT_ORDER, DEFAULT_VISIBILITY, COMPONENT_REGISTRY } from '@/utils/componentRegistry';
+import { getPresetById } from '@/utils/layoutPresets';
 
 const STORAGE_KEY = 'trading-app-layout-config';
 
@@ -105,6 +106,17 @@ export const useLayoutConfig = () => {
     }));
   }, []);
 
+  const loadPreset = useCallback((presetId: string) => {
+    const preset = getPresetById(presetId);
+    if (preset) {
+      setConfig(prev => ({
+        ...prev,
+        ...preset.config,
+        componentProps: prev.componentProps // Preserve existing component props
+      }));
+    }
+  }, []);
+
   return {
     config,
     updateVisibility,
@@ -112,6 +124,7 @@ export const useLayoutConfig = () => {
     resetToDefault,
     toggleComponent,
     moveComponent,
-    updateComponentProps
+    updateComponentProps,
+    loadPreset
   };
 }; 
