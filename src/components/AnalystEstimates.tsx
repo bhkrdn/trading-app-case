@@ -1,3 +1,11 @@
+import { Info } from "lucide-react";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetClose,
+} from "@/components/ui/sheet";
+
 interface AnalystEstimatesProps {
   averageTarget: number;
   highTarget: number;
@@ -23,8 +31,44 @@ export const AnalystEstimates = ({
 }: AnalystEstimatesProps) => {
   return (
     <div className="p-6 bg-background">
-      <h3 className="font-semibold text-foreground mb-4 text-lg">Analist Tahminleri</h3>
-      
+      <div className="flex items-center mb-4">
+        <h3 className="font-semibold text-foreground text-lg flex-1">Analist Tahminleri</h3>
+        <Sheet>
+          <SheetTrigger asChild>
+            <button
+              className="w-7 h-7 flex items-center justify-center rounded-full bg-muted text-muted-foreground hover:bg-muted-foreground/20 transition-colors"
+              aria-label="Bilgi"
+            >
+              <Info className="w-4 h-4" />
+            </button>
+          </SheetTrigger>
+          <SheetContent side="bottom" className="rounded-t-2xl p-6 max-w-md mx-auto pb-8">
+            <div className="flex flex-col items-center text-center">
+              {/* Drag indicator */}
+              <div className="w-12 h-1.5 bg-muted-foreground/30 rounded-full mb-6" />
+              {/* Large info icon in a light circle */}
+              <div className="w-14 h-14 flex items-center justify-center rounded-full bg-blue-50 mb-4">
+                <Info className="w-8 h-8 text-blue-600" />
+              </div>
+              {/* Title */}
+              <h4 className="font-bold text-xl text-foreground mb-4">Bilgi</h4>
+              {/* Explanatory text */}
+              <p className="text-base text-muted-foreground mb-3">
+                Analist Tahminleri, yatırım bankaları, aracı kurumlar ve portföy yönetim şirketlerinin ya da bu şirketlerde görev yapan analistlerin hisselerle ilgili yaptığı tahminleri içermektedir.
+              </p>
+              <p className="text-base text-muted-foreground mb-8">
+                Analistler, yaptıkları araştırmalar sonucunda hisse fiyatları için 12 aylık hedeflerini ve hisse alımı ile ilgili tahminlerini (al, tut ya da sat) açıklarlar.
+              </p>
+              {/* TAMAM button */}
+              <SheetClose asChild>
+                <button className="w-full py-4 bg-blue-600 text-white rounded-full font-bold text-base uppercase tracking-wide shadow-sm hover:bg-blue-700 transition-colors">
+                  TAMAM
+                </button>
+              </SheetClose>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
       <div className="space-y-4">
         <div>
           <p className="text-sm text-muted-foreground mb-1">Ortalama Fiyat Hedefi</p>
