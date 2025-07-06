@@ -11,6 +11,7 @@ import { RelatedNews } from "@/components/RelatedNews";
 import { TransactionHistory } from "@/components/TransactionHistory";
 import { TradingActions } from "@/components/TradingActions";
 import { toast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const handleBuy = () => {
@@ -29,6 +30,16 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background max-w-md mx-auto">
+      {/* Development Link */}
+      <div className="p-4 bg-blue-50 border-b border-blue-200">
+        <Link 
+          to="/dev" 
+          className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+        >
+          🛠️ Development Mode
+        </Link>
+      </div>
+      
       {/* Fixed Header */}
       <div className="sticky top-0 z-10 bg-background">
         <StockHeader symbol="AAPL" />
