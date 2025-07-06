@@ -35,7 +35,7 @@ const Index = () => {
       </div>
       
       {/* Scrollable Content */}
-      <div className="pb-20"> {/* Space for fixed trading actions */}
+      <div className="pb-16"> {/* Space for fixed trading actions */}
         <StockPrice
           symbol="AAPL"
           price={213.55}

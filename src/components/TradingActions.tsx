@@ -6,32 +6,17 @@ interface TradingActionsProps {
 export const TradingActions = ({ onBuy, onSell }: TradingActionsProps) => {
   return (
     <div className="p-4 bg-background border-t border-border">
-      {/* Position Section */}
-      <div className="mb-6">
-        <h3 className="font-semibold text-foreground mb-3">Pozisyonum</h3>
-        <div className="flex justify-between items-center">
-          <div>
-            <p className="text-sm text-muted-foreground">Adet</p>
-            <p className="font-medium">—</p>
-          </div>
-          <div className="text-right">
-            <p className="text-sm text-muted-foreground">Toplam Değer</p>
-            <p className="font-medium">—</p>
-          </div>
-        </div>
-      </div>
-
       {/* Action Buttons */}
-      <div className="flex gap-3">
+      <div className="flex gap-4">
         <button
           onClick={onSell}
-          className="flex-1 py-4 bg-danger text-danger-foreground rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity"
+          className="flex-1 py-4 bg-red-100 text-red-500 rounded-full font-bold text-lg uppercase tracking-wide shadow-sm hover:bg-red-200 transition-colors"
         >
           SAT
         </button>
         <button
           onClick={onBuy}
-          className="flex-1 py-4 bg-primary text-primary-foreground rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity"
+          className="flex-1 py-4 bg-blue-600 text-white rounded-full font-bold text-lg uppercase tracking-wide shadow-sm hover:bg-blue-700 transition-colors"
         >
           AL
         </button>
