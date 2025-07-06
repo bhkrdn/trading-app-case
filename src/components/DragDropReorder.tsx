@@ -113,15 +113,25 @@ export const DragDropReorder = ({
     })
   );
 
+  // Filter out 'stock-header' so it is not draggable or togglable
+  const filteredItems = items.filter(id => id !== 'stock-header');
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
     if (active.id !== over?.id) {
-      const oldIndex = items.indexOf(active.id as string);
-      const newIndex = items.indexOf(over?.id as string);
+      const oldIndex = filteredItems.indexOf(active.id as string);
+      const newIndex = filteredItems.indexOf(over?.id as string);
 
-      const newOrder = arrayMove(items, oldIndex, newIndex);
-      onReorder(newOrder);
+      const newOrder = arrayMove(filteredItems, oldIndex, newIndex);
+      // Reconstruct the full order with stock-header at the start if it was there
+      let fullOrder = items;
+      if (items[0] === 'stock-header') {
+        fullOrder = ['stock-header', ...newOrder];
+      } else {
+        fullOrder = newOrder;
+      }
+      onReorder(fullOrder);
     }
   };
 
@@ -131,9 +141,9 @@ export const DragDropReorder = ({
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
     >
-      <SortableContext items={items} strategy={verticalListSortingStrategy}>
+      <SortableContext items={filteredItems} strategy={verticalListSortingStrategy}>
         <div className="space-y-0">
-          {items.map((id) => (
+          {filteredItems.map((id) => (
             <SortableItem
               key={id}
               id={id}

@@ -36,7 +36,7 @@ const Dev = () => {
       />
       
       {/* Stock Screen Preview */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 h-screen overflow-y-auto">
         <DynamicStockScreen config={config} />
       </div>
     </div>
