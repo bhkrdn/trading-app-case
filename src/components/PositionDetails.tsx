@@ -49,6 +49,8 @@ export const PositionDetails = ({
         <div className="flex justify-between items-center">
           <div>
             <p className="text-sm text-muted-foreground">Bugünkü Getiri</p>
+          </div>
+          <div className="text-right">
             <p className={`font-semibold text-lg ${todayReturn >= 0 ? 'text-success' : 'text-danger'}`}>
               ${todayReturn.toFixed(2)} ({todayReturnPercent >= 0 ? '+' : ''}{todayReturnPercent.toFixed(2)}%)
             </p>
@@ -58,6 +60,8 @@ export const PositionDetails = ({
         <div className="flex justify-between items-center">
           <div>
             <p className="text-sm text-muted-foreground">Toplam Getiri</p>
+          </div>
+          <div className="text-right">
             <p className={`font-semibold text-lg ${totalReturn >= 0 ? 'text-success' : 'text-danger'}`}>
               ${totalReturn.toFixed(2)} ({totalReturnPercent >= 0 ? '+' : ''}{totalReturnPercent.toFixed(2)}%)
             </p>

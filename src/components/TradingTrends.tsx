@@ -27,9 +27,9 @@ export const TradingTrends = () => {
     <div className="p-6 bg-background">
       <h3 className="font-semibold text-foreground mb-4 text-lg">İşlem Trendleri</h3>
       
-      <div className="relative h-64 mb-4">
+      <div className="relative h-48 mb-4">
         {/* Y-axis labels */}
-        <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-muted-foreground">
+        <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-muted-foreground z-10">
           <span>50%</span>
           <span>25%</span>
           <span>0%</span>
@@ -38,26 +38,43 @@ export const TradingTrends = () => {
           <span>-75%</span>
           <span>-100%</span>
         </div>
+
+        {/* Dotted grid lines for each label */}
+        <div className="absolute left-8 right-0 top-0 h-full z-0">
+          {['50%', '25%', '0%', '-25%', '-50%', '-75%', '-100%'].map((label, idx, arr) => (
+            <div
+              key={label}
+              className={
+                label === '0%'
+                  ? 'absolute left-0 right-0 border-t border-border'
+                  : 'absolute left-0 right-0 border-t border-dotted border-border'
+              }
+              style={{ top: `${(idx / (arr.length - 1)) * 100}%` }}
+            />
+          ))}
+        </div>
         
         {/* Chart area */}
-        <div className="ml-8 h-full flex items-end justify-between gap-1">
+        <div className="ml-8 h-full flex items-center justify-between gap-1" style={{ transform: 'translateY(-16.66%)' }}>
           {trendData.map((data, index) => (
-            <div key={index} className="flex flex-col items-center justify-end h-full flex-1">
-              {/* Positive bar (Net Buy) */}
-              {data.netBuy > 0 && (
-                <div
-                  className="bg-success rounded-t-sm w-full max-w-3"
-                  style={{ height: `${(data.netBuy / maxValue) * 30}%` }}
-                />
-              )}
-              
-              {/* Zero line area */}
-              <div className="h-1/2 flex items-center justify-center">
-                {/* Negative bar (Net Sell) */}
+            <div key={index} className="flex flex-col items-center h-full flex-1">
+              {/* Top half: positive bar, bottom-aligned */}
+              <div className="flex flex-col justify-end h-1/2 w-full">
+                {data.netBuy > 0 && (
+                  <div
+                    className="bg-success rounded-t-sm w-full max-w-2"
+                    style={{ height: `${(Math.abs(data.netBuy) / maxValue) * 100}%` }}
+                  />
+                )}
+              </div>
+              {/* Center line */}
+              <div className="w-full h-px bg-border"></div>
+              {/* Bottom half: negative bar, top-aligned */}
+              <div className="flex flex-col justify-start h-1/2 w-full">
                 {data.netSell < 0 && (
                   <div
-                    className="bg-danger rounded-b-sm w-full max-w-3"
-                    style={{ height: `${(Math.abs(data.netSell) / maxValue) * 60}%` }}
+                    className="bg-danger rounded-b-sm w-full max-w-2"
+                    style={{ height: `${(Math.abs(data.netSell) / maxValue) * 100}%` }}
                   />
                 )}
               </div>

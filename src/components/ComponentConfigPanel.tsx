@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, Settings, Save } from 'lucide-react';
 import { COMPONENT_REGISTRY } from '@/utils/componentRegistry';
 
@@ -19,6 +19,10 @@ export const ComponentConfigPanel = ({
 }: ComponentConfigPanelProps) => {
   const [localProps, setLocalProps] = useState(currentProps);
   const registryItem = COMPONENT_REGISTRY[componentId];
+
+  useEffect(() => {
+    setLocalProps(currentProps);
+  }, [currentProps, componentId]);
 
   if (!isOpen || !registryItem) return null;
 

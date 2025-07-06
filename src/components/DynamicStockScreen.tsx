@@ -45,7 +45,7 @@ export const DynamicStockScreen = ({ config }: DynamicStockScreenProps) => {
     .filter(Boolean);
 
   return (
-    <div className="min-h-screen bg-background max-w-md mx-auto flex flex-col h-screen">
+    <div className="min-h-screen bg-background max-w-md mx-auto">
       {/* Fixed Header - Always show StockHeader if visible */}
       {config.visibility['stock-header'] && (
         <div className="sticky top-0 z-10 bg-background">
@@ -57,7 +57,7 @@ export const DynamicStockScreen = ({ config }: DynamicStockScreenProps) => {
       )}
       
       {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto pb-16">
+      <div className="pb-16"> {/* Space for fixed trading actions */}
         {visibleComponents.map(({ id, component: Component, props }) => (
           <div key={id}>
             <Component {...props} />
@@ -65,8 +65,8 @@ export const DynamicStockScreen = ({ config }: DynamicStockScreenProps) => {
         ))}
       </div>
       
-      {/* Trading Actions - always visible at the bottom */}
-      <div className="w-full max-w-md bg-background">
+      {/* Fixed Trading Actions - Always show */}
+      <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-background">
         <TradingActions onBuy={handleBuy} onSell={handleSell} />
       </div>
     </div>
