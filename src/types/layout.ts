@@ -32,4 +32,10 @@ export interface FearGreedIndexProps {
     value: number;
     sentiment: string;
   }>;
+}
+
+export interface FearGreedIndexComponentProps {
+  value?: number;
+  label?: string;
+  description?: string;
 } 

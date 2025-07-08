@@ -2,6 +2,7 @@ import { COMPONENT_REGISTRY } from '@/utils/componentRegistry';
 import { LayoutConfig } from '@/types/layout';
 import { TradingActions } from './TradingActions';
 import { toast } from '@/hooks/use-toast';
+import { FearGreedIndex } from './FearGreedIndex';
 
 interface DynamicStockScreenProps {
   config: LayoutConfig;
@@ -73,3 +74,4 @@ export const DynamicStockScreen = ({ config }: DynamicStockScreenProps) => {
     </div>
   );
 }; 
+

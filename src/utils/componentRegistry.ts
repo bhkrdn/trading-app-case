@@ -11,6 +11,10 @@ import { RelatedNews } from "@/components/RelatedNews";
 import { TransactionHistory } from "@/components/TransactionHistory";
 import { TradingActions } from "@/components/TradingActions";
 import { ComponentRegistryItem } from "@/types/layout";
+import { FearGreedIndex } from '../components/FearGreedIndex';
+import { FearGreedIndexV1Modular } from '../components/FearGreedIndexV1Modular';
+import { FearGreedIndexV2 } from '../components/FearGreedIndexV2';
+import { FearGreedIndexV3 } from '../components/FearGreedIndexV3';
 
 export const COMPONENT_REGISTRY: Record<string, ComponentRegistryItem> = {
   'stock-header': {
@@ -97,14 +101,51 @@ export const COMPONENT_REGISTRY: Record<string, ComponentRegistryItem> = {
     component: TransactionHistory,
     defaultProps: {},
     name: 'Transaction History'
-  }
+  },
+  'fear-greed-index': {
+    name: 'Fear & Greed Index',
+    component: FearGreedIndex,
+    defaultProps: {
+      value: 78,
+      label: 'Aşırı Açgözlülük',
+      description: 'is driving the US market',
+    },
+  },
+  'fear-greed-index-v1-modular': {
+    name: 'Fear & Greed Index V1 (Modular)',
+    component: FearGreedIndexV1Modular,
+    defaultProps: {
+      value: 78,
+      label: 'Aşırı Açgözlülük',
+      description: 'is driving the US market',
+    },
+  },
+  'fear-greed-index-v2': {
+    name: 'Fear & Greed Index V2',
+    component: FearGreedIndexV2,
+    defaultProps: {
+      value: 78,
+      label: 'Aşırı Açgözlülük',
+      description: 'is driving the US market',
+    },
+  },
+  'fear-greed-index-v3': {
+    name: 'Fear & Greed Index V3',
+    component: FearGreedIndexV3,
+    defaultProps: {
+      value: 78,
+      label: 'Aşırı Açgözlülük',
+      description: 'is driving the US market',
+    },
+  },
 };
 
 // Default component order (matching the original Index.tsx)
 export const DEFAULT_COMPONENT_ORDER = [
   'stock-header',
-  'stock-price', 
+  'stock-price',
   'stock-chart',
+  'fear-greed-index-v1-modular',
   'position-details',
   'statistics',
   'dividend-details',
@@ -112,11 +153,19 @@ export const DEFAULT_COMPONENT_ORDER = [
   'trading-trends',
   'related-stocks',
   'related-news',
-  'transaction-history'
+  'transaction-history',
+  'fear-greed-index-v2',
+  'fear-greed-index-v3',
 ];
 
 // Default visibility (all visible)
 export const DEFAULT_VISIBILITY = Object.keys(COMPONENT_REGISTRY).reduce((acc, key) => {
-  acc[key] = true;
+  if (key === 'fear-greed-index-v1-modular') {
+    acc[key] = true;
+  } else if (key === 'fear-greed-index-v2' || key === 'fear-greed-index-v3') {
+    acc[key] = false;
+  } else {
+    acc[key] = true;
+  }
   return acc;
 }, {} as Record<string, boolean>); 

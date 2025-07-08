@@ -12,6 +12,7 @@ import { TransactionHistory } from "@/components/TransactionHistory";
 import { TradingActions } from "@/components/TradingActions";
 import { toast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import { FearGreedIndex } from "@/components/FearGreedIndex";
 
 const Index = () => {
   const handleBuy = () => {
@@ -47,6 +48,7 @@ const Index = () => {
       
       {/* Scrollable Content */}
       <div className="pb-16"> {/* Space for fixed trading actions */}
+        <FearGreedIndex />
         <StockPrice
           symbol="AAPL"
           price={213.55}
