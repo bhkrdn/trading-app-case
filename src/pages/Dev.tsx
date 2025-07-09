@@ -1,6 +1,6 @@
 import { useLayoutConfig } from '@/hooks/useLayoutConfig';
-import { ControlPanel } from '@/components/ControlPanel';
-import { DynamicStockScreen } from '@/components/DynamicStockScreen';
+import { ControlPanel } from '@/components/development/ControlPanel';
+import { DynamicStockScreen } from '@/components/development/DynamicStockScreen';
 import Markets from '@/pages/Markets';
 import { useState } from 'react';
 

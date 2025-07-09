@@ -1,8 +1,8 @@
 import { COMPONENT_REGISTRY } from '@/utils/componentRegistry';
 import { LayoutConfig } from '@/types/layout';
-import { TradingActions } from './TradingActions';
+import { TradingActions } from '../stock/TradingActions';
 import { toast } from '@/hooks/use-toast';
-import { FearGreedIndex } from './FearGreedIndex';
+import { FearGreedIndex } from '../markets/FearGreedIndex';
 
 interface DynamicStockScreenProps {
   config: LayoutConfig;

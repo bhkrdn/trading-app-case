@@ -1,20 +1,20 @@
-import { StockHeader } from "@/components/StockHeader";
-import { StockPrice } from "@/components/StockPrice";
-import { StockChart } from "@/components/StockChart";
-import { PositionDetails } from "@/components/PositionDetails";
-import { Statistics } from "@/components/Statistics";
-import { DividendDetails } from "@/components/DividendDetails";
-import { AnalystEstimates } from "@/components/AnalystEstimates";
-import { TradingTrends } from "@/components/TradingTrends";
-import { RelatedStocks } from "@/components/RelatedStocks";
-import { RelatedNews } from "@/components/RelatedNews";
-import { TransactionHistory } from "@/components/TransactionHistory";
-import { TradingActions } from "@/components/TradingActions";
+import { StockHeader } from "@/components/stock/StockHeader";
+import { StockPrice } from "@/components/stock/StockPrice";
+import { StockChart } from "@/components/stock/StockChart";
+import { PositionDetails } from "@/components/stock/PositionDetails";
+import { Statistics } from "@/components/stock/Statistics";
+import { DividendDetails } from "@/components/stock/DividendDetails";
+import { AnalystEstimates } from "@/components/stock/AnalystEstimates";
+import { TradingTrends } from "@/components/stock/TradingTrends";
+import { RelatedStocks } from "@/components/stock/RelatedStocks";
+import { RelatedNews } from "@/components/stock/RelatedNews";
+import { TransactionHistory } from "@/components/stock/TransactionHistory";
+import { TradingActions } from "@/components/stock/TradingActions";
 import { ComponentRegistryItem } from "@/types/layout";
-import { FearGreedIndex } from '../components/FearGreedIndex';
-import { FearGreedIndexV1Modular } from '../components/FearGreedIndexV1Modular';
-import { FearGreedIndexV2 } from '../components/FearGreedIndexV2';
-import { FearGreedIndexV3 } from '../components/FearGreedIndexV3';
+import { FearGreedIndex } from '../components/markets/FearGreedIndex';
+import { FearGreedIndexV1Modular } from '../components/markets/FearGreedIndexV1Modular';
+import { FearGreedIndexV2 } from '../components/markets/FearGreedIndexV2';
+import { FearGreedIndexV3 } from '../components/markets/FearGreedIndexV3';
 
 export const COMPONENT_REGISTRY: Record<string, ComponentRegistryItem> = {
   'stock-header': {

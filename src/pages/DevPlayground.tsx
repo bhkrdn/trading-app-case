@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { FearGreedIndexV1Modular } from '@/components/FearGreedIndexV1Modular';
-import { FearGreedIndexV2 } from '@/components/FearGreedIndexV2';
-import { FearGreedIndexV3 } from '@/components/FearGreedIndexV3';
+import { FearGreedIndexV1Modular } from '@/components/markets/FearGreedIndexV1Modular';
+import { FearGreedIndexV2 } from '@/components/markets/FearGreedIndexV2';
+import { FearGreedIndexV3 } from '@/components/markets/FearGreedIndexV3';
 
 const DevPlayground = () => {
   const [value, setValue] = useState(78);

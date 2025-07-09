@@ -2,7 +2,7 @@ import { ArrowLeft, Info } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { FearGreedIndexV1Modular } from "@/components/FearGreedIndexV1Modular";
+import { FearGreedIndexV1Modular } from "@/components/markets/FearGreedIndexV1Modular";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface MarketsProps {

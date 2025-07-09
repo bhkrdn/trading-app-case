@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { DynamicStockScreen } from "@/components/DynamicStockScreen";
+import { DynamicStockScreen } from "@/components/development/DynamicStockScreen";
 import { getDefaultLayoutConfig } from "@/hooks/useLayoutConfig";
 
 const Index = () => {
