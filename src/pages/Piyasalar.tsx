@@ -138,9 +138,9 @@ const Piyasalar = () => {
                 <div className="w-6 text-gray-500 text-sm">{item.rank}</div>
                 <div className="flex-1 flex items-center gap-2">
                   <img src={item.logo} alt={item.symbol} className="w-7 h-7 rounded-full bg-gray-200 object-cover" />
-                  <div>
-                    <div className="font-semibold text-gray-800 text-sm leading-tight">{item.symbol}</div>
-                    <div className="text-xs text-gray-500 leading-tight truncate max-w-[160px]">{item.name}</div>
+                  <div className="min-w-0 flex-1">
+                    <div className="font-semibold text-gray-800 text-sm leading-tight truncate">{item.symbol}</div>
+                    <div className="text-xs text-gray-500 leading-tight truncate max-w-[140px]">{item.name}</div>
                   </div>
                 </div>
                 <div className={`w-24 text-right font-semibold ${item.change > 0 ? "text-green-600" : item.change < 0 ? "text-red-500" : "text-gray-500"}`}>

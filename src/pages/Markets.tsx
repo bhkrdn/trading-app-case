@@ -5,6 +5,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { FearGreedIndexV1Modular } from "@/components/markets/FearGreedIndexV1Modular";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
+
 interface MarketsProps {
   showFullFearGreed?: boolean;
   showCompactFearGreed?: boolean;
@@ -12,6 +13,8 @@ interface MarketsProps {
 
 const Markets = ({ showFullFearGreed = true, showCompactFearGreed = true }: MarketsProps) => {
   const navigate = useNavigate();
+
+
 
   const marketIndices = [
     { symbol: "SPY", name: "S&P 500", change: 0.79, isPositive: true },
@@ -65,7 +68,7 @@ const Markets = ({ showFullFearGreed = true, showCompactFearGreed = true }: Mark
   ];
 
   return (
-    <div className="min-h-screen bg-background max-w-md mx-auto">
+    <div className="min-h-screen bg-background max-w-md mx-auto flex flex-col h-screen">
       {/* Header */}
       <div className="flex items-center justify-between p-4 bg-background border-b border-border">
         <div className="flex items-center gap-4">
@@ -180,9 +183,9 @@ const Markets = ({ showFullFearGreed = true, showCompactFearGreed = true }: Mark
                           }`}>
                             {stock.logo}
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="font-semibold text-foreground text-sm">{stock.symbol}</div>
-                            <div className="text-xs text-muted-foreground truncate">{stock.name}</div>
+                          <div className="flex-1 min-w-0 max-w-[140px]">
+                            <div className="font-semibold text-foreground text-sm truncate">{stock.symbol}</div>
+                            <div className="text-xs text-muted-foreground truncate leading-tight">{stock.name}</div>
                           </div>
                         </div>
                         
@@ -236,9 +239,11 @@ const Markets = ({ showFullFearGreed = true, showCompactFearGreed = true }: Mark
           </TabsContent>
         </Tabs>
       </div>
+      
+
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-background border-t border-border">
+      <div className="w-full max-w-md bg-background border-t border-border">
         <div className="flex justify-around py-2">
           <button 
             onClick={() => navigate("/")}
