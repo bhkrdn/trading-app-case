@@ -5,7 +5,7 @@ import { getPresetById } from '@/utils/layoutPresets';
 
 const STORAGE_KEY = 'trading-app-layout-config';
 
-const getDefaultLayoutConfig = (): LayoutConfig => ({
+export const getDefaultLayoutConfig = (): LayoutConfig => ({
   components: [],
   order: DEFAULT_COMPONENT_ORDER,
   visibility: DEFAULT_VISIBILITY,
